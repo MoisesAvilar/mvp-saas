@@ -1,0 +1,177 @@
+{
+  "produtos": [
+    {
+      "id": "6565",
+      "nome": "hamburguer",
+      "quantidade": 49,
+      "custoUnitario": 10,
+      "precoVenda": 30
+    },
+    {
+      "id": "7398",
+      "nome": "pastel",
+      "quantidade": 55,
+      "custoUnitario": 3,
+      "precoVenda": 15
+    },
+    {
+      "id": "b952",
+      "nome": "suco",
+      "quantidade": 48,
+      "custoUnitario": 2,
+      "precoVenda": 6
+    },
+    {
+      "id": "a123",
+      "nome": "batata frita",
+      "quantidade": 60,
+      "custoUnitario": 4,
+      "precoVenda": 12
+    },
+    {
+      "id": "c789",
+      "nome": "refrigerante",
+      "quantidade": 70,
+      "custoUnitario": 2.5,
+      "precoVenda": 8
+    },
+    {
+      "id": "d456",
+      "nome": "milkshake",
+      "quantidade": 30,
+      "custoUnitario": 5,
+      "precoVenda": 18
+    },
+    {
+      "id": "e678",
+      "nome": "pizza",
+      "quantidade": 25,
+      "custoUnitario": 12,
+      "precoVenda": 35
+    }
+  ],
+  "transacoes": [
+    {
+      "id": "522f",
+      "descricao": "Venda: 1x hamburguer, 5x pastel, 2x suco",
+      "valor": 117,
+      "tipo": "entrada",
+      "caixaId": "1",
+      "categoriaId": 1,
+      "data": "2025-10-05T23:58:42.524Z"
+    },
+    {
+      "id": "t100",
+      "descricao": "Venda: 2x batata frita, 2x refrigerante",
+      "valor": 40,
+      "tipo": "entrada",
+      "caixaId": "2",
+      "categoriaId": 1,
+      "data": "2025-10-06T10:15:00.000Z"
+    },
+    {
+      "id": "t101",
+      "descricao": "Compra: estoque de suco e refrigerante",
+      "valor": 100,
+      "tipo": "saida",
+      "caixaId": "3",
+      "categoriaId": 2,
+      "data": "2025-10-04T14:00:00.000Z"
+    },
+    {
+      "id": "t102",
+      "descricao": "Venda: 1x milkshake, 1x pizza",
+      "valor": 53,
+      "tipo": "entrada",
+      "caixaId": "4",
+      "categoriaId": 1,
+      "data": "2025-10-03T19:45:00.000Z"
+    },
+    {
+      "id": "t103",
+      "descricao": "Pagamento de energia elétrica",
+      "valor": 200,
+      "tipo": "saida",
+      "caixaId": "1",
+      "categoriaId": 3,
+      "data": "2025-10-01T09:00:00.000Z"
+    },
+    {
+      "id": "t104",
+      "descricao": "Pagamento de salários",
+      "valor": 1500,
+      "tipo": "saida",
+      "caixaId": "1",
+      "categoriaId": 4,
+      "data": "2025-09-30T18:00:00.000Z"
+    },
+    {
+      "id": "t105",
+      "descricao": "Venda: 3x pastel, 2x suco",
+      "valor": 63,
+      "tipo": "entrada",
+      "caixaId": "2",
+      "categoriaId": 1,
+      "data": "2025-10-02T12:30:00.000Z"
+    },
+    {
+      "id": "t106",
+      "descricao": "Compra: batata e óleo",
+      "valor": 80,
+      "tipo": "saida",
+      "caixaId": "3",
+      "categoriaId": 2,
+      "data": "2025-10-01T15:10:00.000Z"
+    }
+  ],
+  "caixas": [
+    {
+      "id": "1",
+      "nome": "Dinheiro"
+    },
+    {
+      "id": "2",
+      "nome": "Pix"
+    },
+    {
+      "id": "3",
+      "nome": "Cartão de Débito"
+    },
+    {
+      "id": "4",
+      "nome": "Cartão de Crédito"
+    }
+  ],
+  "categorias": [
+    {
+      "id": "1",
+      "nome": "Venda de Comida",
+      "tipo": "entrada"
+    },
+    {
+      "id": "2",
+      "nome": "Compra de Insumos",
+      "tipo": "saida"
+    },
+    {
+      "id": "3",
+      "nome": "Contas Fixas",
+      "tipo": "saida"
+    },
+    {
+      "id": "4",
+      "nome": "Salários",
+      "tipo": "saida"
+    },
+    {
+      "id": "5",
+      "nome": "Venda de Bebida",
+      "tipo": "entrada"
+    },
+    {
+      "id": "6",
+      "nome": "Outras Despesas",
+      "tipo": "saida"
+    }
+  ]
+}
