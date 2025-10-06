@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  Box, Typography, Button, Paper, Grid, FormControl, InputLabel, Select,
+  Box, Typography, Button, Paper, Grid, FormControl, InputLabel, Select, CircularProgress,
   MenuItem, TextField, List, ListItem, ListItemText, IconButton, Divider,
   useMediaQuery, useTheme
 } from '@mui/material';
@@ -32,20 +32,24 @@ export default function POSPage() {
   const [manualPrice, setManualPrice] = useState('');
   const [paymentMethodId, setPaymentMethodId] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSaleLoading, setIsSaleLoading] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
   const { showNotification } = useNotification();
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsPageLoading(true);
       try {
         const [produtosRes, caixasRes] = await Promise.all([
           axios.get(`${API_BASE_URL}/produtos`),
           axios.get(`${API_BASE_URL}/caixas`)
         ]);
-        setProdutos(produtosRes.data);
+        setProdutos(produtosRes.data.filter(p => p.quantidade > 0 || p.vendidoPor === 'manual'));
         setFormasPagamento(caixasRes.data);
       } catch (error) {
         showNotification('Erro ao carregar dados iniciais.', 'error');
+      } finally {
+        setIsPageLoading(false);
       }
     };
     fetchData();
@@ -101,7 +105,7 @@ export default function POSPage() {
       return;
     }
 
-    setIsLoading(true);
+    setIsSaleLoading(true);
     try {
       const saleDescription = cart.map((item) => `${item.sellQuantity}x ${item.nome}`).join(', ');
       const transactionData = {
@@ -130,10 +134,19 @@ export default function POSPage() {
       console.error("Erro detalhado:", error.response?.data || error.message);
       showNotification('Erro ao finalizar a venda.', 'error');
     } finally {
-      setIsLoading(false);
+      setIsSaleLoading(false);
       setIsChangeModalOpen(false); // Garante que o modal feche
     }
   };
+
+  if (isPageLoading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
 
   const handleFinalizeSale = () => {
     if (cart.length === 0 || !paymentMethodId) {
@@ -235,9 +248,9 @@ export default function POSPage() {
                 fullWidth
                 startIcon={<ShoppingCartCheckoutIcon />}
                 onClick={handleFinalizeSale}
-                disabled={isLoading || cart.length === 0}
+                disabled={isSaleLoading || cart.length === 0}
               >
-                {isLoading ? 'Finalizando...' : 'Finalizar Venda'}
+                {isSaleLoading ? 'Finalizando...' : 'Finalizar Venda'}
               </Button>
             </Box>
           </Paper>
